@@ -140,6 +140,8 @@ export default class RootNavigation extends Component {
 	      				/> 
 	      			)  			
 	      		}}
+	      		configureScene={(route, routeStack) =>
+    				Navigator.SceneConfigs.FloatFromBottomAndroid}
 	      		navigationBar={
 					<Navigator.NavigationBar
 						style={{backgroundColor: '#29323C'}}

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text } from 'react-native';
 import MainComponent from './components/MainComponent';
 
-class AwesomeProject extends Component {
+class PINsimple	 extends Component {
 	render() {
 	    return (
 	      <MainComponent/>
@@ -12,7 +12,7 @@ class AwesomeProject extends Component {
 };
 
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('PINsimple', () => PINsimple);
 
 
 

@@ -14,7 +14,7 @@ export default class LaunchElement extends Component {
                 style={{backgroundColor:"#ffffff",borderBottomColor:"#F8F9F9",borderBottomWidth:1}} 
                 onPress={ () => this.props.navigator.push({index:this.props.tab,dataFilter: {}}) } 
             >
-                <View style={{ justifyContent: 'space-between', flexDirection: 'row'}}>
+                <View style={{ justifyContent: 'space-between',alignItems:"center", flexDirection: 'row'}}>
                     <Text style={{color:"black",padding:10, marginLeft:15}}>
                         {this.props.text}
                     </Text>
