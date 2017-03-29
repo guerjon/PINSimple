@@ -1,0 +1,242 @@
+Todo esto se puede
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function formatName(user) {
+  return user.firstName + ' ' + user.lastName;
+}
+
+function getGreeting(user) {
+  if (user) {
+    return <h1>Hello, {formatName(user)}!</h1>;
+  }
+  return <h1>Hello, Stranger.</h1>;
+}
+
+const user = {
+  firstName: 'Harper',
+  lastName: 'Perez'
+};
+
+const element = (
+	<h1>
+		  <input name={formatName(user)} placeholder={formatName(user)}/>
+		  
+	</h1>
+);
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+
+
+Puedes llamar a una funcion asi
+
+App(){
+	return (html)
+}
+
+y llamarla en en el render asi 
+
+ReactDOM.render(
+	<App/>,
+	document.getElementById('root')
+
+)
+
+
+
+All React components must act like pure functions with respect to their props.
+Esto quiere decir que nunca podemos modificar los props de entrada que nos llegan solo podemos hacer operaciones con ellos
+
+
+Para modificar un estado en un componente siempre se tiene que modicar con el metodo this.setState({propiedad: "algo"})
+la unica vez que se puede modicar directamente es en el constructor
+
+
+Otro error que nunca debemos hacer Confiar en los valores actuales para calcular los valores directos, es decir 
+algo asi
+
+// Wrong
+this.setState({
+  counter: this.state.counter + this.props.increment,
+});
+
+
+por que como react puede ser asincrono los estados pueden ya haber cambiado y se puden modificar para arreglar esto se tiene que usar el siguiente formato
+
+
+// Correct
+this.setState((prevState, props) => ({
+  counter: prevState.counter + props.increment
+}));
+
+Las funciones arrow sustituyen a las funciones normales
+es lo mismo
+
+	oli => {esto}
+que
+	function(oli){
+		return esto
+	}
+
+
+si se tienen varios parametros se tienen que poner los parentecis a la izquierda de la funcion
+
+(oli1,oli2) => {esto}
+
+que es lo mismo que 
+
+function(oli1.oli2) => {esto}
+
+
+Una promesa es un objecto que se usa para manejar valores que pueden llegar en cualquier momento o tal vez nunca, 
+la promesa tiene 3 estados
+
+pendiente: es el estado inicial, pero tambi'en se puede dar si la promesa rechaza el valor
+cumplido: todo salio bien y ya se obtuvo el valor
+rechazado: hay algun error y debe de ser cachado
+
+
+fun.bind()
+
+cuando usamos fun.bind(objeto)
+lo que esta regresa es una copa a la funcion ligada directamente a este objeto
+
+esta funcion se puede almacenar en una variable algo as'i como
+
+var nuevaFuncion = fun.bind(Objeto);
+
+
+el Objeto debe de tener adentro un funcion que se llame fun
+
+
+por ejemplo 
+
+var Objeto = {
+	fun : () => {this.x} 
+}
+
+
+Sintaxis experimiental
+
+
+class LoggingButton extends React.Component {
+  // This syntax ensures `this` is bound within handleClick.
+  // Warning: this is *experimental* syntax.
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    );
+  }
+}
+
+
+/*****************
+
+
+un buen truco para renderizar algo o no es
+	esto lo puedes poner en el return de un render  por ejemplo
+	  {unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+      }
+
+Supongamos que queremos que un hijo no se renderice en cierto caso especial, entonces lo que tenemos que regresar en este caso es null
+
+
+para mostrar una lista de elementos siempre podemos usar la funcion map
+
+const numbers = [1, 2, 3, 4, 5];
+
+ const listItems = numbers.map((number) =>
+    <li key={number.toString()}>{number}</li>
+  );
+
+  y podemos regresar listItems dentro de un ul, note el key={number.toString()}
+
+  esto es necesario por que todas las listas necesitan un id si no mandara un warning
+
+Cuando especificamos un Key si el componente va a ser rederizado muchas veces entonces, el key tiene que ir en el componente
+<List key={algunvalor} >
+
+no dentro de la lista <li key ={algun valor} >   <---- esto es incorrecto 
+
+
+Los componentes no puede leer que valor de key tienen, si necesitamos este valor en el componente, tenemos que pasarlo como prop 
+pero con un nombre diferente por ejemplo aqui lo pasamos como id
+
+const content = posts.map((post) =>
+  <Post
+    key={post.id}
+    id={post.id}
+    title={post.title} />
+);
+
+
+Componentes controlados
+
+Los componentes controlados en react son aquellos que cada una de sus inputs estan controladas por el componente
+los valores iniciales en por ejemplo un select corresponden a un estado del componente.
+
+
+
+
+Empieza react native ---------------------------------------------------------------------------------
+
+Rutas
+
+
+Para manejar la navegacion entre pantallas tenemos que hacer uso del componente 
+<Navigator />
+
+Cuando importes un fuckin componente tuyo no le pongas import  { Componente } from 'ruta' por que no pinches funciona madafucker!!!!!
+
+
+Si vas a llamar a una funcion propia de la clase en el metodo render entonces tienes que ponerle los fuckin parentesis 
+
+Listas
+
+Para usar un ListView tenemos que llenarla con dos cosas
+
+ListView.DataSource y
+renderRow(item) <-- Esta funcion regresa un componente.
+
+<------------------------------------NAVEGACION ---------------------------------------------------->
+supongamos que quieres pasar informaci'on de padre a hijo cuando se de un click de algo
+
+lo que tienes que hacer es lo siguiente
+
+en el hijo tienes que poner el prop onPress={() => this.props.nombreDelProp("Informacion que quieras pasar")}
+
+
+Luego en el padre vas a hacer esto
+
+<Hijo handleChangeChildren={(variableConInforacion) => this.handle(variableConInformacion) }>
+
+y ya en el padre thener el 
+
+handle(VariableConInformacion){
+  Y aqui haces lo que se te venga en gana con variable con informacion
+}
+
+
+
+<LaunchElementGroup name="map" text="Locations" handleClickRoute={(i) => {this.props.navigator.push({index:"locations"})}}/>
+
+<--------------------------------------------------------------------------------------------------------------------------->
+
+
+Al hacer un fetch siempre esperamos una promesa, a la promesa le hacemos siempre un doble .then
+el primer .then es para convertirlo a json y el segundo es para hacer lo que tengamos que hacer
+en el segundo se pueden dar valores a variables globales para despues usarlos en otros componentes.
+
