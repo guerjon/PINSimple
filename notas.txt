@@ -240,3 +240,54 @@ Al hacer un fetch siempre esperamos una promesa, a la promesa le hacemos siempre
 el primer .then es para convertirlo a json y el segundo es para hacer lo que tengamos que hacer
 en el segundo se pueden dar valores a variables globales para despues usarlos en otros componentes.
 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Cuando tenemos un objeto y tenemos el valor de su estado en el contructor de la siguiente manera
+
+constructor(props){
+  super(props)
+
+  this.state= {
+    value a = "";
+    value v = 5;
+  }
+}
+
+entonces en cualquier funcion podemos recuperar alguno de sus valores de la siguiente manera
+
+var { a } = this.state;
+var { b } = this.state;
+
+y ahora si imprimos console.log(a);
+
+
+la consola regresara ""
+
+
+de igual manera para console.log(b);
+
+la consola regresara 5
+
+
+
+
+supongamos que hacemos un fetch y esto nos regresa como siempre un json, entonces
+si hacemos esta mamada
+  
+  const { results: films } = json;
+
+  podemos extraer los results y asignarlos a films
+
+  {
+    cont : 7,
+    otra_madre : " fdsfsd",
+    results : {
+      un monton de resultados
+    }
+  }
+
+  entones ahora podemos imprimir esto
+
+  console.log(films) y nos va a imprimir "un monton de resultados"
+

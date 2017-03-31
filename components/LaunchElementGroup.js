@@ -4,10 +4,41 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import LaunchElement from './LaunchElement';
 
 const styles = StyleSheet.create({
-  text:{
-    color: "white"
-  },
+  	text:{
+    	color: "white"
+  	},
+  	groupElement: {
+		borderRadius:0,
+		backgroundColor:"#29323C",
+		padding:5,
+		borderTopColor:"#bfbfbf", 
+		borderBottomColor:"#bfbfbf",
+		borderBottomWidth:1,
+		borderTopWidth:1  	
+  	}
 });
+
+function SingleElement(props){
+	return (	
+		<View style={{marginBottom:8}}>					
+			<View style=
+				{
+					styles.groupElement
+				}> 
+				<Icon.Button 
+					size={30} 
+					name={props.name} 
+					color="white" 
+					style={{backgroundColor:"#29323C" }} 
+					onPress={() => props.navigator.push({index:props.index}) }>
+					<Text style={{color:"white"}}>
+						{props.text}
+					</Text>
+				</Icon.Button>
+			</View>		
+		</View>
+	);
+}
 
 function UsersAndGroupScenes(props){
 	return (
@@ -39,27 +70,18 @@ function DeviceManagementScenes(props) {
 	);
 }
 
-function AccessHistoryScenes(props){
-	return (
-		<View>
-			<LaunchElement tab="user_access" text="Users Access" navigator={props.navigator}/>
-            <LaunchElement tab="endpoint_access" text="Endpoint Access" navigator={props.navigator}/>
-            <LaunchElement tab="global_history" text="Global History" navigator={props.navigator}/>
-		</View>
-	);
-}
-
 const components = {
 	usersandgroups : UsersAndGroupScenes, 
 	locations : LocationScenes,
-	devicemanagement : DeviceManagementScenes ,
-	accesshistory : AccessHistoryScenes
+	devicemanagement : DeviceManagementScenes
 }
 
 function Tags(props) {
 	const SpecifiTags = components[props.index];
 	return <SpecifiTags navigator={props.navigator} />; 
 }
+
+
 
 export default class LaunchElementGroup extends Component {
 
@@ -70,6 +92,13 @@ export default class LaunchElementGroup extends Component {
 		}
 		this.handleShowTabs = this.handleShowTabs.bind(this);
 		this.handleHomeTab = this.handleHomeTab.bind(this);
+	}
+
+	shouldComponentUpdate(nextProps, nextState){
+	    if(this.state === nextState)
+	    	return false;
+
+	    return true;
 	}
 
 	handleShowTabs(){
@@ -86,58 +115,34 @@ export default class LaunchElementGroup extends Component {
 	}
 
 	render(){
+		var props = this.props;
 
-		var style = {
-			borderRadius:0,
-			backgroundColor:"#29323C",
-			padding:5,
-			borderTopColor:"#bfbfbf", 
-			borderBottomColor:"#bfbfbf",
-			borderBottomWidth:1,
-			borderTopWidth:1
-		};
-
-		if(this.props.name == 'home'){
-			return (
-				<View style={{marginBottom:8}}>					
-					<View style=
-						{
-							style
-						}> 
-						<Icon.Button 
-							size={30} 
-							name={this.props.name} 
-							color="white" 
-							style={{backgroundColor:"#29323C" }} 
-							onPress={() => this.props.navigator.push({index:'home',dataFilter: {}}) }>
-							<Text style={{color:"white"}}>
-								{this.props.text}
-							</Text>
-						</Icon.Button>
-					</View>		
-				</View>
-			)
-
-		}else{
-			return (
-				<View style={{marginBottom:8}}>					
-					<View style=
-						{
-							style
-						}> 
-						<Icon.Button size={30} name={this.props.name} color="white" style={{backgroundColor:"#29323C" }} onPress={this.handleShowTabs}>
-							<Text style={{color:"white"}}>
-								{this.props.text}
-							</Text>
-						</Icon.Button>
+		switch(props.index){
+			case "home":
+				return <SingleElement navigator={props.navigator} name={props.name} text={props.text} index="home" />
+			break;
+			case "access_history":
+				return <SingleElement navigator={props.navigator} name={props.name} text={props.text} index="access_history" /> 
+			break;
+			default:
+				return (
+					<View style={{marginBottom:8}}>					
+						<View style=
+							{
+								styles.groupElement
+							}> 
+							<Icon.Button size={30} name={props.name} color="white" style={{backgroundColor:"#29323C" }} onPress={this.handleShowTabs}>
+								<Text style={{color:"white"}}>
+									{props.text}
+								</Text>
+							</Icon.Button>
+						</View>
+						<View>
+							{ this.state.showTabs  &&  <Tags index={props.index} navigator={props.navigator} />}				
+						</View>		
 					</View>
-					<View>
-						{ this.state.showTabs  &&  <Tags index={this.props.index} navigator={this.props.navigator} />}				
-					</View>		
-				</View>
-			)
-
+				);
+			break;
 		}
-
 	}
 }

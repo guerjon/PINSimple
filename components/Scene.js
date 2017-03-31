@@ -20,10 +20,7 @@ import Endpoints from './views/device_management/Endpoints';
 import Connections from './views/device_management/Connections';
 
 //Access History
-
-import UserAccess from './views/access_history/UsersAccess';
-import EndpointAccess from './views/access_history/EndpointAccess';
-import GlobalHistory from './views/access_history/GlobalHistory';
+import AccessHistory from './views/access_history/AccessHistory';
 
 import UsersDetails from './views/users_and_groups/UsersDetails';
 import GroupsDetails from './views/users_and_groups/GroupsDetails';
@@ -61,10 +58,7 @@ const components = {
 	controllers : {component:Controllers,searchBar:true,gridView:true,routeFetch:'client/get/areas'} ,
 	endpoints : {component:Endpoints,searchBar:true,gridView:true,routeFetch:'client/get/areas'} ,
 	connections : {component:Connections,routeFetch: 'client/get/areas'} ,
-	user_access : {component:UserAccess,searchBar:true,gridView:true} ,
-	endopoint_access : {component:EndpointAccess,searchBar:true,gridView:true} ,
-	global_history : {component:GlobalHistory,searchBar:true,gridView:true} ,
-
+	access_history : {component:AccessHistory,routeFetch: 'history/get'} ,
 	users_details : {component:UsersDetails},
 	groups_details : {component:GroupsDetails},
 
@@ -223,7 +217,7 @@ export default class Scene extends Component{
 		
 		return results;
 	}
-
+/*
 	filterData(searchText, data) {
 	  	let text = searchText.toLowerCase();
 
@@ -232,7 +226,7 @@ export default class Scene extends Component{
 	    	return note.search(text) !== -1;
 	  	});
 	}
-
+*/
   	renderLoadingView() {
 	    return (
 	      	<ActivityIndicator size={30} />
@@ -247,14 +241,13 @@ export default class Scene extends Component{
 
 	componentDidMount() {
 		var route = components[this.props.scene].routeFetch;
-		
 		if(route){
 			switch(this.props.scene){
 				case 'users' :
 					this.getUserDataFetch(route);
 					break;
 				case 'groups' :
-					this.getGroupsDataFetch(route)
+					this.getGeneralDataFetch(route)
 					break;
 				case 'campuses': 
 					this.getLocationDataFetch(route)
@@ -275,6 +268,9 @@ export default class Scene extends Component{
 					this.getLocationDataFetch(route);
 				case 'connections':
 					this.getLocationDataFetch(route);
+					break;
+				case 'access_history':
+					this.getGeneralDataFetch(route);
 					break;
 				default:
 					break;
@@ -318,7 +314,6 @@ export default class Scene extends Component{
 	}
 
 	getUserDataFetch(route){
-
 		Keychain
 			  	.getGenericPassword()
 			  	.then((credentials) => {
@@ -355,7 +350,7 @@ export default class Scene extends Component{
 		);
 	}
 
-	getGroupsDataFetch(route){
+	getGeneralDataFetch(route){
 		Keychain
 			  	.getGenericPassword()
 			  	.then((credentials) => {
@@ -373,7 +368,6 @@ export default class Scene extends Component{
 					})
 					.then((response) => response.json())
 					.then((responseJson) => {
-					  	
 					  	if(responseJson.status == "success"){
 						  	this.setState({       
 								data: responseJson.data,

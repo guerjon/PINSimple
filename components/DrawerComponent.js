@@ -25,11 +25,11 @@ export default class DrawerComponent extends Component {
 		var navigationView = (
 			<View style={{flex:1,backgroundColor:"#8F969E"}}>
 				<ScrollView style={{marginTop:55}}>
-					<LaunchElementGroup name="home"  text="Home" navigator={this.props.navigator} index="home" />   
-					<LaunchElementGroup name="users" text="Users & Groups" navigator={this.props.navigator} index="usersandgroups" />
-					<LaunchElementGroup name="map"  text="Locations" navigator={this.props.navigator} index="locations"/>
+					<LaunchElementGroup name="home"   text="Home" navigator={this.props.navigator} index="home" />   
+					<LaunchElementGroup name="users"  text="Users & Groups" navigator={this.props.navigator} index="usersandgroups" />
+					<LaunchElementGroup name="map"    text="Locations" navigator={this.props.navigator} index="locations"/>
 					<LaunchElementGroup name="mobile" text="Device Management" navigator={this.props.navigator} index="devicemanagement"/>
-					<LaunchElementGroup name="book" text="Access History" navigator={this.props.navigator} index="accesshistory"/>
+					<LaunchElementGroup name="book"   text="Access History" navigator={this.props.navigator} index="access_history"/>
 					<LaunchElementGroup name="sign-out" text="Logout" />
 				 </ScrollView>
 			</View>

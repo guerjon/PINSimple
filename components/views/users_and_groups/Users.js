@@ -128,7 +128,6 @@ export default class Users extends Component {
 		var full_name = user.user_first_name + ", " + user.user_last_name;
 
 		return (
-				
 			<TouchableHighlight
 				onPress={
 					() => this.props.navigator.push(data)
@@ -136,7 +135,7 @@ export default class Users extends Component {
 				style={styles.item}
 			>	
 				<View>
-					<GridItem 
+					<GridItem
 						image_route={image_route} 
 		      			item_name={full_name} 
 		      			item_id={user.user_id} 

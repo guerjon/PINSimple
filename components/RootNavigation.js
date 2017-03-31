@@ -106,9 +106,7 @@ export default class RootNavigation extends Component {
 			{ index : "controllers", title: "Controller Directory"},
 			{ index : "endpoints", title: "Endpoint Directory"},
 			{ index : "connections", title: "Device Connections"},
-			{ index : "user_access", title: "User Access"},
-			{ index : "endpoint_access", title: "Endpoint Access"},
-			{ index : "global_history", title: "Global Access"},
+			{ index : "access_history", title: "Access History"},
 			{ index : "users_details", title: "User Details"},
 			{ index : "groups_details", title: "Groups Details"},
 			{ index : "campuses_details", title: "Campus Details"},
@@ -121,7 +119,7 @@ export default class RootNavigation extends Component {
 	  	
 	    return (
 	    	<Navigator
-	    		initialRoute={routes[0]}
+	    		initialRoute={routes[10]}
 	    		style={{backgroundColor:"white"}}
 	    		ref={(navigator) => {this.navigator = navigator}}
 	      		renderScene={(route, navigator) => {
@@ -141,7 +139,7 @@ export default class RootNavigation extends Component {
 	      			)  			
 	      		}}
 	      		configureScene={(route, routeStack) =>
-    				Navigator.SceneConfigs.FloatFromBottomAndroid}
+    				Navigator.SceneConfigs.FadeAndroid}
 	      		navigationBar={
 					<Navigator.NavigationBar
 						style={{backgroundColor: '#29323C'}}
