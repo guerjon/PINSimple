@@ -5,6 +5,12 @@ module.exports = {
 		borderBottomWidth: 0.5,
 		padding:10
 	},
+	row_selected:{
+		backgroundColor : "#F5F5F5",
+		flexDirection: "row",
+		borderBottomWidth: 0.5,
+		padding: 10
+	},
 	item_title_container:{
 		padding:10
 	},
@@ -78,5 +84,26 @@ module.exports = {
 	little_piece_image :{
 		width: 30,
 		height: 30
-	}
+	},
+    searchbarContainer :{
+        backgroundColor : "#eaebed",
+        flexDirection: "row",
+        height: 30,
+        borderRadius: 5,
+        alignItems: "center",
+        marginTop: 5,
+        marginRight:10,
+        marginLeft:10,
+        marginBottom: 5
+    },
+    searchBar: {
+        height: 40,
+        fontSize: 15,
+        width:320,
+    },
+    iconSearchContainer: {
+        flex:1,
+        alignItems: "center",
+        justifyContent: "center"
+    }
 }

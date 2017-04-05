@@ -50,6 +50,8 @@ export default class DrawerComponent extends Component {
 					separateData={this.props.separateData}
 					loaded={this.props.loaded}
 					onChangeTextHandler={(info) => this.props.onChangeTextHandler(info)}
+					showAdd = {(value) => this.props.showAdd(value)}
+					filters = {this.props.filters}
 				/> 
 				<FormCampusModal
 					onRequestClose={this.props.closeModal} 

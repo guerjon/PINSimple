@@ -21,6 +21,7 @@ import Connections from './views/device_management/Connections';
 
 //Access History
 import AccessHistory from './views/access_history/AccessHistory';
+import AddFiltersToAccessHistory from './views/access_history/AddFiltersToAccessHistory';
 
 import UsersDetails from './views/users_and_groups/UsersDetails';
 import GroupsDetails from './views/users_and_groups/GroupsDetails';
@@ -58,7 +59,8 @@ const components = {
 	controllers : {component:Controllers,searchBar:true,gridView:true,routeFetch:'client/get/areas'} ,
 	endpoints : {component:Endpoints,searchBar:true,gridView:true,routeFetch:'client/get/areas'} ,
 	connections : {component:Connections,routeFetch: 'client/get/areas'} ,
-	access_history : {component:AccessHistory,routeFetch: 'history/get'} ,
+	access_history : {component:AccessHistory} ,
+	access_history_filters : {component: AddFiltersToAccessHistory},
 	users_details : {component:UsersDetails},
 	groups_details : {component:GroupsDetails},
 
@@ -269,9 +271,6 @@ export default class Scene extends Component{
 				case 'connections':
 					this.getLocationDataFetch(route);
 					break;
-				case 'access_history':
-					this.getGeneralDataFetch(route);
-					break;
 				default:
 					break;
 			}
@@ -465,9 +464,7 @@ export default class Scene extends Component{
 	}
 
 	render(){	
-
 		const SpecifiScene = components[this.props.scene].component;
-		
 		return (
 			<View>
 				{
@@ -503,6 +500,8 @@ export default class Scene extends Component{
 						navigator={this.props.navigator}
 						route={this.props.route}
 						activeView={this.state.activeView}
+						showAdd={(value) => this.props.showAdd(value)}
+						filters={this.props.filters}
 					/>
 				</ScrollView>
 			</View>

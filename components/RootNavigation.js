@@ -45,6 +45,8 @@ export default class RootNavigation extends Component {
 	      	loaded: false,
 	      	openDrawer: true,
 	      	modalVisible: false,
+	      	showAdd: false,
+	      	filters: {}
 		}		
 
 		this.handleChangeDrawerState = this.handleChangeDrawerState.bind(this);	
@@ -93,6 +95,16 @@ export default class RootNavigation extends Component {
 		}	
 	}
 
+	showAdd(value){
+		if(value){
+			
+			this.setState({
+				showAdd: value[0],
+				filters: value[1]
+			});
+		}
+	}
+
   	render() {
 
 	  	const routes = [
@@ -107,6 +119,7 @@ export default class RootNavigation extends Component {
 			{ index : "endpoints", title: "Endpoint Directory"},
 			{ index : "connections", title: "Device Connections"},
 			{ index : "access_history", title: "Access History"},
+			{ index : "access_history_filters", title: "Add Filters"},
 			{ index : "users_details", title: "User Details"},
 			{ index : "groups_details", title: "Groups Details"},
 			{ index : "campuses_details", title: "Campus Details"},
@@ -135,6 +148,8 @@ export default class RootNavigation extends Component {
 	      					modalVisible= {this.state.modalVisible}
 	      					onChangeTextHandler={(info) => this.onChangeTextHandler(info)}
 	      					closeModal={this.handleChangeModalState}
+	      					showAdd={(value) => this.showAdd(value)}
+	      					filters = {this.state.filters}
 	      				/> 
 	      			)  			
 	      		}}
@@ -184,26 +199,24 @@ export default class RootNavigation extends Component {
 						   			return null;
 						   		}else{
 
-									var object = routes.filter(function(obj){
+									/*var object = routes.filter(function(obj){
 						   				return obj.index == route.index;
 						   			});
+									*/
 
-									if(object[0].add){
-										return(
-											<View style={styles.rightItem}>
-								   	 			<TouchableHighlight 
-								   	 				style={styles.rightItem} 
-								   	 				onPress={this.handleChangeModalState}
-								   	 			>
-									   	 			<Icon 
-								                        size={20}
-								                        name="plus" 
-								                        color="#ffffff"
+									if(route.index == "access_history_filters"){
+										if(this.state.showAdd){
+											return(
+												<View style={styles.rightItem}>
+									   	 			<TouchableHighlight 
+									   	 				style={styles.rightItem} 
+									   	 				onPress={() => navigator.pop()}
 									   	 			>
-									   	 			</Icon>
-								   	 			</TouchableHighlight>
-							   	 			</View>
-						   	 			)										
+										   	 			<Text style={{color:"white"}}>Add</Text>
+									   	 			</TouchableHighlight>
+								   	 			</View>
+							   	 			)										
+										}
 									}
 						   		}
 						   	},
