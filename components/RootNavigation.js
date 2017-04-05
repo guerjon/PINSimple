@@ -106,7 +106,7 @@ export default class RootNavigation extends Component {
 	}
 
   	render() {
-
+  		
 	  	const routes = [
 			{ index : "home", title : "Home"},
 			{ index : "users", title:"User Directory",add:true},

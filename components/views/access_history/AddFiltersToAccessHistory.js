@@ -131,7 +131,6 @@ export default class AddFiltersToAccessHistory extends Component{
 	}
 
 	changeValues(kind){
-
 		this.setState({
 			values : kind
 		});
@@ -179,7 +178,6 @@ export default class AddFiltersToAccessHistory extends Component{
 			});
 			filters.pin_code = index;
 		}
-
 		this.props.showAdd([true,filters]);
 	}
 
@@ -377,7 +375,7 @@ export default class AddFiltersToAccessHistory extends Component{
 						<Text style={{color:"white",padding:10}}>SELECT A DIRECTION</Text>
 						<Value name="Opening"  index="opening" kind="direction" type_selected={direction_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />		
 						<Value name="Closing" index="closing" kind="direction" type_selected={direction_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />
-						<Value name="No Movement" index="no_movement" kind="direction" type_selected={direction_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />
+						<Value name="No Movement" index="no movement" kind="direction" type_selected={direction_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />
 					</View>
 
 				}{
@@ -388,7 +386,7 @@ export default class AddFiltersToAccessHistory extends Component{
 						<Value name="Granted"  index="granted" kind="result" type_selected={result_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />
 						<Value name="Restricted"  index="restricted" kind="result" type_selected={result_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />
 						<Value name="Conflict"  index="conflict" kind="result" type_selected={result_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />
-						<Value name="No Change"  index="no_change" kind="result" type_selected={result_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />
+						<Value name="No Change"  index="no change" kind="result" type_selected={result_selected} addParameters={(kind,index) => this.addParameters(kind,index)} />
 					</View>
 				}{
 					this.state.values == "pin_code" &&

@@ -77,7 +77,7 @@ export default class MainComponent extends Component {
 
 		var headers = new Headers({
 		    'Accept': 'application/json',
-		    'Content-Type': 'application/x-www-form-urlencoded',
+		    'Content-Type': 'multipart/form-data',
 		});
 
 		fetch('http://admin.pinsimple.com/api/user/checklogin', {
