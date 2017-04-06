@@ -53,6 +53,10 @@ export default class RootNavigation extends Component {
 		this.handleChangeModalState = this.handleChangeModalState.bind(this);	
 	}
 
+	componentWillMount(){
+		console.log("se manada a llamar ");
+	}
+
 	getDrawer(drawer){
 		this.drawer = drawer;
 	}
@@ -136,6 +140,7 @@ export default class RootNavigation extends Component {
 	    		style={{backgroundColor:"white"}}
 	    		ref={(navigator) => {this.navigator = navigator}}
 	      		renderScene={(route, navigator) => {
+
 	      			return (
 	      				<DrawerComponent 
 	      					navigator={navigator}  
@@ -203,7 +208,6 @@ export default class RootNavigation extends Component {
 						   				return obj.index == route.index;
 						   			});
 									*/
-
 									if(route.index == "access_history_filters"){
 										if(this.state.showAdd){
 											return(

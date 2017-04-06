@@ -52,7 +52,7 @@ export default class GroupsForm extends Component{
 						/>
 					</View>
 
-					<View style={{marginTop:10}}>
+					<ScrollView >
 						{	group.group_users &&					
 							<Users
 								users={group.group_users}
@@ -62,7 +62,7 @@ export default class GroupsForm extends Component{
 							/>
 							
 						}
-					</View>
+					</ScrollView>
 				</ScrollView>
 			</View>
 		);

@@ -134,8 +134,8 @@ export default class AddFiltersToAccessHistory extends Component{
 		this.setState({
 			values : kind
 		});
-
-		this.props.showAdd([false,filters]);
+		//the botton add is in RootNavigatorion so we need lift up the action to it
+		this.props.showAdd([false,AddFiltersToAccessHistory]);
 	}
 
 	addParameters(kind,index){

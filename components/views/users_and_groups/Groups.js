@@ -28,7 +28,6 @@ export default class Groups extends Component {
   		});
 	}
   	renderGroup(group){
-		console.log(group.group_id);
 		var data = {
 			index:"groups_details",
 			group: group		

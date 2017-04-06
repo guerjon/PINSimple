@@ -50,7 +50,7 @@ export default class AccessHistory extends Component {
   	constructor(props) {
 		super(props);
 		this.state = {
-	  		loaded : false,
+	  		loaded : true,
 	  		data : new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
 		};
   	}
@@ -60,7 +60,8 @@ export default class AccessHistory extends Component {
   	}
 
   	componentDidMount() {
-  		this.getHistoryDataFetch(null);
+
+  		//this.getHistoryDataFetch(null);
   	}
   	
   	getHistoryDataFetch(filters){
@@ -79,7 +80,6 @@ export default class AccessHistory extends Component {
 					var data = new FormData();
 
 					if(filters && Object.keys(filters).length !== 0 && filters.constructor === Object){
-						console.log(filters.direction);
 						if(filters.type)
 							data.append ("history_type",filters.type);
 						if(filters.device)
@@ -125,7 +125,6 @@ export default class AccessHistory extends Component {
 						
 				    	data.append( "record_count", 50 );
 					}
-
 
 					var res = fetch(GLOBAL.BASE_URL + 'history/get', {
 						method: 'POST',
@@ -249,10 +248,13 @@ export default class AccessHistory extends Component {
 	}
 
 	render() {
+		
 		var filters = this.props.filters;
 		
+		console.log(filters);
+		
 		var list_view = (
-			<View>
+			<View style={{backgroundColor:GLOBAL.SECONDARY_COLOR,minHeight:500}} >
 				<Text style={{color:"white",marginBottom:5,marginLeft:5}}>History</Text>
 				<ListView
 					dataSource={this.state.data}
@@ -264,7 +266,7 @@ export default class AccessHistory extends Component {
 		var index = "access_history_filters";
 		var newRowStyles = GlobalStyles.row;
 		
-		if(this.state.loaded) {	
+		if(this.state.loaded) {
 			if(Object.keys(filters).length !== 0 && filters.constructor === Object){
 				return (
 				  	<View style={styles.container}>
@@ -304,7 +306,6 @@ export default class AccessHistory extends Component {
 								onPress={() => navigator.push({index: index,filters:filters})}
 								text="Add new Search Parameter"
 							/>
-
 						</View>
 						{list_view}
 				  	</View>
@@ -323,7 +324,7 @@ export default class AccessHistory extends Component {
 						{list_view}
 				  	</View>
 				);				
-			}
+			}	
   		}
 		return (
 			<View style={{marginTop:57,alignItems:"center",justifyContent:"center"}}>

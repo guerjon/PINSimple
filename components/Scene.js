@@ -140,6 +140,7 @@ export default class Scene extends Component{
 	}
 
 	onChangeTextHandler(info){
+
 		var results = this.searchFor(info.searchText,this.state.allData,this.props.scene);
 		
 		this.setState({       
@@ -173,12 +174,15 @@ export default class Scene extends Component{
 	searchFor(toSearch,objects,scene){
 		var results = [];
 	  	
+	  	console.log(toSearch);
+	  	console.log(objects);
+	  	console.log(scene);
+
 	  	toSearch = this.trimString(toSearch); // trim it
 	  	for(var i=0; i < objects.length; i++) {
 		    var index = null;
 		    var object = objects[i]; 
-		
-		  	switch(scene){
+			switch(scene){
 		  		case "users":
 		  			index = object.full_name;
 		  			break;
@@ -370,7 +374,8 @@ export default class Scene extends Component{
 					  	if(responseJson.status == "success"){
 						  	this.setState({       
 								data: responseJson.data,
-						  		loaded: true
+						  		loaded: true,
+						  		allData : responseJson.data
 						  	});            
 					  	}
 					})
