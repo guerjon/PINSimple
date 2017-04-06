@@ -135,9 +135,10 @@ export default class AddFiltersToAccessHistory extends Component{
 			values : kind
 		});
 		//the botton add is in RootNavigatorion so we need lift up the action to it
-		this.props.showAdd([false,AddFiltersToAccessHistory]);
+		this.props.showAdd([false]);
 	}
 
+	//this function has a lifting up to his props
 	addParameters(kind,index){
 
 		if(kind == 'type'){
@@ -178,6 +179,7 @@ export default class AddFiltersToAccessHistory extends Component{
 			});
 			filters.pin_code = index;
 		}
+
 		this.props.showAdd([true,filters]);
 	}
 

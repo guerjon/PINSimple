@@ -53,10 +53,6 @@ export default class RootNavigation extends Component {
 		this.handleChangeModalState = this.handleChangeModalState.bind(this);	
 	}
 
-	componentWillMount(){
-		console.log("se manada a llamar ");
-	}
-
 	getDrawer(drawer){
 		this.drawer = drawer;
 	}
@@ -101,13 +97,26 @@ export default class RootNavigation extends Component {
 
 	showAdd(value){
 		if(value){
-			
 			this.setState({
-				showAdd: value[0],
-				filters: value[1]
+				showAdd: value[0]
 			});
+
+			if(value[1]){
+				this.filters = value[1]
+			}else{
+				console.log("empty filters to access_history");
+			}
 		}
 	}
+
+	handleAddHistoryAccessButton(navigator){
+		
+		this.setState({
+			filters : this.filters
+		});
+		navigator.replacePreviousAndPop({index: "access_history"});
+	}
+
 
   	render() {
   		
@@ -131,16 +140,16 @@ export default class RootNavigation extends Component {
 			{ index : "rooms_details", title: "Area details"},
 			{ index : "access_points_details", title: "Access Points Details"},
 			{ index : "controllers_details", title : "Controller Details"},
-			{ index : "endpoints_details", title : "Endpoint Details"}
+			{ index : "endpoints_details", title : "Endpoint Details"},
+			{ index : "access_history_details", title : "Access History Details"}
 	  	];
 	  	
+
 	    return (
 	    	<Navigator
 	    		initialRoute={routes[10]}
 	    		style={{backgroundColor:"white"}}
-	    		ref={(navigator) => {this.navigator = navigator}}
 	      		renderScene={(route, navigator) => {
-
 	      			return (
 	      				<DrawerComponent 
 	      					navigator={navigator}  
@@ -208,13 +217,14 @@ export default class RootNavigation extends Component {
 						   				return obj.index == route.index;
 						   			});
 									*/
+									
 									if(route.index == "access_history_filters"){
 										if(this.state.showAdd){
 											return(
 												<View style={styles.rightItem}>
 									   	 			<TouchableHighlight 
 									   	 				style={styles.rightItem} 
-									   	 				onPress={() => navigator.pop()}
+									   	 				onPress={() => this.handleAddHistoryAccessButton(navigator)}
 									   	 			>
 										   	 			<Text style={{color:"white"}}>Add</Text>
 									   	 			</TouchableHighlight>

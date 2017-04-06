@@ -20,10 +20,6 @@ export default class DrawerComponent extends Component {
 	}
 
 	render() {
-		console.log('--------------------------------');
-		console.log(this.props.route);
-		console.log('--------------------------------');
-
 		//LaunchElement component has the prop name, this name is for the icon name.
 		var navigationView = (
 			<View style={{flex:1,backgroundColor:"#8F969E"}}>

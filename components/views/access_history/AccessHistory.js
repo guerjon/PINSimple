@@ -13,6 +13,7 @@ import {
   ActivityIndicator,
   ListView,
   TextInput
+
 } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 var moment = require('moment');
@@ -51,17 +52,15 @@ export default class AccessHistory extends Component {
 		super(props);
 		this.state = {
 	  		loaded : true,
-	  		data : new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+	  		data : new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 		};
   	}
 
-  	componentWillReceiveProps(nextProps) {  		
-  		this.getHistoryDataFetch(nextProps.filters);
-  	}
 
   	componentDidMount() {
-
-  		//this.getHistoryDataFetch(null);
+  		if(this.props.filters && Object.keys(this.props.filters).length !== 0 && this.props.filters.constructor === Object)
+  			this.getHistoryDataFetch(this.props.filters);
+  		
   	}
   	
   	getHistoryDataFetch(filters){
@@ -223,9 +222,9 @@ export default class AccessHistory extends Component {
   				styles = styles.row;
   				break;
   		}
-
+  		
   		return (
-  			<View style={styles}>
+  			<TouchableOpacity style={styles} onPress={() => this.props.navigator.push({index:"access_history_details",data : info}) }>
   				<View>
   					<Text> image </Text>
   				</View>
@@ -239,8 +238,14 @@ export default class AccessHistory extends Component {
   						{this.convertUnixTime(info.history_time)}
   					</Text>
   				</View>
-  			</View>
+  			</TouchableOpacity>
   		);
+  	}
+
+  	openModal(){
+  		this.setState({
+  			openModal : true
+  		});
   	}
 	
 	capitalizeFirstLetter(string) {
@@ -248,17 +253,16 @@ export default class AccessHistory extends Component {
 	}
 
 	render() {
-		
+
 		var filters = this.props.filters;
-		
-		console.log(filters);
-		
+
 		var list_view = (
 			<View style={{backgroundColor:GLOBAL.SECONDARY_COLOR,minHeight:500}} >
 				<Text style={{color:"white",marginBottom:5,marginLeft:5}}>History</Text>
 				<ListView
 					dataSource={this.state.data}
 					renderRow={(info) => this.renderInfo(info)}
+					enableEmptySections={true}
 				/>
 			</View>
 		);

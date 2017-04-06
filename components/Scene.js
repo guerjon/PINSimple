@@ -22,6 +22,8 @@ import Connections from './views/device_management/Connections';
 //Access History
 import AccessHistory from './views/access_history/AccessHistory';
 import AddFiltersToAccessHistory from './views/access_history/AddFiltersToAccessHistory';
+import AccessHistoryDetails from './views/access_history/AccessHistoryDetails';
+
 
 import UsersDetails from './views/users_and_groups/UsersDetails';
 import GroupsDetails from './views/users_and_groups/GroupsDetails';
@@ -35,6 +37,7 @@ import AccessPointsDetails from './views/locations/AccessPointsDetails';
 import ControllersDetails from './views/device_management/ControllersDetails';
 import EndpointsDetails from './views/device_management/EndpointsDetails';
 import ConnectionsDetails from './views/device_management/ConnectionsDetails';
+
 
 import GLOBAL from './Globals';
 import ListItem from './views/ListItem';
@@ -72,8 +75,8 @@ const components = {
 
 	controllers_details : {component: ControllersDetails},
 	endpoints_details : {component: EndpointsDetails},
-	connections_details : {component: ConnectionsDetails}
-
+	connections_details : {component: ConnectionsDetails},
+	access_history_details : {component : AccessHistoryDetails}
 };
 
 const normalTabStyle = {
@@ -174,10 +177,6 @@ export default class Scene extends Component{
 	searchFor(toSearch,objects,scene){
 		var results = [];
 	  	
-	  	console.log(toSearch);
-	  	console.log(objects);
-	  	console.log(scene);
-
 	  	toSearch = this.trimString(toSearch); // trim it
 	  	for(var i=0; i < objects.length; i++) {
 		    var index = null;
