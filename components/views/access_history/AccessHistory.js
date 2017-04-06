@@ -222,7 +222,7 @@ export default class AccessHistory extends Component {
   				styles = styles.row;
   				break;
   		}
-  		
+
   		return (
   			<TouchableOpacity style={styles} onPress={() => this.props.navigator.push({index:"access_history_details",data : info}) }>
   				<View>
@@ -277,32 +277,32 @@ export default class AccessHistory extends Component {
 						<View style={{paddingTop:5}}>
 							<Text style={{color:"white",marginLeft:5,marginBottom:5}}>Search Parameters</Text>
 							{filters.type &&
-								<TouchableOpacity style={newRowStyles} onPress={() => navigator.push({index: index,selected_filter:"type",filters:filters})}>
+								<TouchableOpacity style={newRowStyles} onPress={() => navigator.push({index: index,selected_filter:["type",filters.type],filters:filters})}>
 									<Text style={{marginLeft:40}}>Type :  {this.capitalizeFirstLetter(filters.type)}  </Text>
 								</TouchableOpacity>
 							}
 							{filters.device &&
-								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:"device",filters:filters})}>
+								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:["device",filters.device],filters:filters})}>
 									<Text style={{marginLeft:40}}>Devices : {this.capitalizeFirstLetter(filters.device.device_name)} </Text>
 								</TouchableOpacity>
 							}
 							{filters.user &&
-								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:"user",filters:filters})}>
+								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:["user",filters.user],filters:filters})}>
 									<Text style={{marginLeft:40}}>User : {filters.user.full_name} </Text>
 								</TouchableOpacity>						
 							}
 							{filters.direction &&
-								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:"direction",filters:filters})}>
+								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:["direction",filters.direction],filters:filters})}>
 									<Text style={{marginLeft:40}}>Direction : {this.capitalizeFirstLetter(filters.direction)} </Text>
 								</TouchableOpacity>						
 							}
 							{filters.result &&
-								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:"result",filters:filters})}>
+								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:["result",filters.result],filters:filters})}>
 									<Text style={{marginLeft:40}}>Result : {this.capitalizeFirstLetter(filters.result)} </Text>
 								</TouchableOpacity>						
 							}
 							{filters.pin_code &&
-								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:"pin_code",filters:filters})}>
+								<TouchableOpacity style={GlobalStyles.row} onPress={() => navigator.push({index: index,selected_filter:["pin_code",filters.pin_code],filters:filters})}>
 									<Text style={{marginLeft:40}}>PIN CODE : {filters.pin_code} </Text>
 								</TouchableOpacity>
 							}

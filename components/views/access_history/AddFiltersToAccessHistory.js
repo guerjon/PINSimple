@@ -47,8 +47,6 @@ export default class AddFiltersToAccessHistory extends Component{
 			user_selected : {},
 			loaded : false,
 			type_kind_selected : null,
-			device_kind_selected: null,
-			users_kind_selected: null,
 			direction_kind_selected: null,
 			result_kind_selected: null,
 		}
@@ -128,6 +126,57 @@ export default class AddFiltersToAccessHistory extends Component{
 	componentDidMount() {
 		this.getUserDataFetch();
 		this.getDevicesDataFetch();
+		selected_filter = this.props.route.selected_filter; 
+		
+		if(selected_filter){
+			if(selected_filter[0]){
+				var filter_kind = selected_filter[0];
+				var value = selected_filter[1];
+				switch(filter_kind){
+					case "type":
+						this.setState({
+							type_kind_selected: value,
+							values : filter_kind
+						});
+					break;
+					case "device":
+						this.setState({
+							device_selected: value,
+							values : filter_kind
+						});
+					break;
+					case "user":
+						this.setState({
+							user_selected : value,
+							values : filter_kind
+						});
+					break;
+					case "direction":
+						this.setState({
+							direction_kind_selected : value,
+							values : filter_kind
+						});
+					break;
+					case "result":
+						this.setState({
+							result_kind_selected : value,
+							values : filter_kind
+						});
+					break;
+					case "pin_code":
+						this.setState({
+							pin_code_kind_selected :value,
+							values : filter_kind
+						});
+					break
+					default:
+						break;
+
+				}
+			}
+		}
+
+		
 	}
 
 	changeValues(kind){
@@ -280,8 +329,6 @@ export default class AddFiltersToAccessHistory extends Component{
 
 	render() {
 		var type_selected = this.state.type_kind_selected;
-		var device_selected = this.state.device_kind_selected;
-		var user_selected = this.state.users_kind_selected;
 		var direction_selected = this.state.direction_kind_selected;
 		var result_selected = this.state.result_kind_selected;
 

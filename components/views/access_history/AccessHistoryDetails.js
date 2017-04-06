@@ -31,7 +31,6 @@ export default class AccessHistoryDetails extends Component {
 	
 	constructor(props) {
 		super(props);
-		
 	}
 
 	render(){
