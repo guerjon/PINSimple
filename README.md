@@ -1,34 +1,30 @@
-# PINsimple
+# PinSimple
+
+One Paragraph of project description goes here
+
+## Getting Started
+
+This is proyect is an android app, used to internal control in Novate, the is made with React-Native 4.3, (see the pakage.json)
+
+### Prerequisites
+
+You. need instal node, https://nodejs.org/en/download/
+java https://www.java.com/en/download/help/download_options.xml
+android studio and the sdk https://developer.android.com/studio/install
+and react-native 0.43 https://facebook.github.io/react-native/docs/0.43/getting-started.html
 
 
-The file Libraries/CustomComponents/Navigator/Navigator.js
-was modified, remplace the render method. by this. 
+### Installing
+After install you'll need run react-native run-android with a connected device or a emmulator. 
 
-render: function() {
-    var newRenderedSceneMap = new Map();
-    var scenes = this.state.routeStack.map((route, index) => {
-      var renderedScene;
-     if (this._renderedSceneMap.has(route)) {
-          renderedScene = this._renderedSceneMap.get(route);
-        } else {
-          renderedScene = this._renderScene(route, index);
-        }
-      newRenderedSceneMap.set(route, renderedScene);
-      return renderedScene;
-    });
-    this._renderedSceneMap = newRenderedSceneMap;
-    return (
-      <View style={[styles.container, this.props.style]}>
-        <View
-          style={styles.transitioner}
-          {...this.panGesture.panHandlers}
-          onTouchStart={this._handleTouchStart}
-          onResponderTerminationRequest={
-            this._handleResponderTerminationRequest
-          }>
-          {scenes}
-        </View>
-        {this._renderNavigationBar()}
-      </View>
-    );
-  },
+## Authors
+
+Jonathan Guerrero
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+All the React-native Team.
