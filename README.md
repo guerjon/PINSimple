@@ -1,6 +1,6 @@
 # PinSimple
 
-This is proyect is an android app, used to internal control in Novate, the is made with React-Native 4.3, (see the pakage.json)
+This is proyect is an android app, used to internal control in Novatek, it was made with React-Native 4.3, (see the pakage.json)
 
 ### Getting Started
 
